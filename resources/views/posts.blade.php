@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-
-<html lang="es">
-    <head>
-        <title>laravel</title>
-        <link rel="stylesheet" href="/app.css">
-    </head>
-
-    <body>
+<x-layout>
         @foreach($posts as $post)
             <article>
                 <h1>
@@ -22,6 +14,5 @@
                 </div>
             </article>
         @endforeach
-    </body>
 
-</html>
+</x-layout>

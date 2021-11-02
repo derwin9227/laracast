@@ -1,13 +1,7 @@
-<!DOCTYPE html>
+<x-layout {{-- content="hola putos" --}} >
+        {{-- componentes y sus variables --}}
+        {{-- <x-slot name="content">puto</x-slot> --}}
 
-<html lang="es">
-    <head>
-        <title>My Blog</title>
-        <link rel="stylesheet" href="/app.css">
-    </head>
-
-    <body>
-        
         <article>
             
             <h1>{{ $post->title }}</h1>
@@ -19,7 +13,5 @@
         </article>
 
         <a href="/" >Go Back</a>
-      
-    </body>
 
-</html>
+</x-layout>
