@@ -24,10 +24,7 @@ class Post{
     
     }
 
-    public static function find($slug){ 
-
-        return static::all()->firstWhere('slug', $slug);
-    }//find
+  
 
     public static function all(){
 
@@ -42,7 +39,21 @@ class Post{
                     $document->body(),
                     $document->slug
             ))->sortByDesc('date');
-    });//funcion cache
-}//funcion all
+        });//funcion cache
+    }//funcion all
+
+    public static function find($slug){
+        return static::all()->firstWhere('slug', $slug);
+    }//find
+
+    public static function findOrFail($slug){ 
+
+        $post = static::all()->firstWhere('slug', $slug);
+
+        if(! $post){
+            throw new ModelNotFoundException();
+        }//if post no existe
+        return $post;
+    }//findOrFail
 
 }
