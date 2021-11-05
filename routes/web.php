@@ -8,20 +8,16 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 
 Route::get('/', function () {
 
-    $posts = Post::all();
-
     return view('posts',[
-        'posts' => $posts
+        'posts' => Post::all()
     ]);
 
 });
 
-Route::get('posts/{post}', function($id) {
-
-    $post = Post::findOrFail($id);
+Route::get('posts/{post:slug}', function(Post $post) {
 
     return view('post',[
-        'post' => Post::find($id)
+        'post' => $post
     ]);
 
 });
