@@ -1,6 +1,6 @@
-<x-layout {{-- content="hola putos" --}} >
+<x-layout {{-- content="hola" --}} >
         {{-- componentes y sus variables --}}
-        {{-- <x-slot name="content">puto</x-slot> --}}
+        {{-- <x-slot name="content">hola</x-slot> --}}
 
         <article>
             
