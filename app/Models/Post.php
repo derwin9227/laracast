@@ -25,7 +25,14 @@ class Post extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function user(){
-        return $this->belongsTo(User::class);
+    /* el nombre de la funcion es la variable
+    que utilizara como llave foranea
+    pero se puede pasar la llave foranea como argumento
+    de la relacion, en este caso belongsTo
+    para cambiar el nombre de la function
+    sin ser afectado el funcionamiento */
+
+    public function author(){
+        return $this->belongsTo(User::class, 'user_id');
     }
 }
