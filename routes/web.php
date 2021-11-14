@@ -9,9 +9,17 @@ use Illuminate\Support\Facades\File;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
 
 Route::get('/', function () {
+    
+    $post = Post::latest();
+
+    if(request('search')){
+        $post
+            ->where('title', 'like', '%' . request('search') . '%')
+            ->orWhere('body', 'like', '%' . request('search') . '%');
+    }
 
     return view('posts',[
-        'posts' => Post::latest()->get(),
+        'posts' => $post->get(),
         'categories' => Category::all()    ]);
 
 })->name('home');
