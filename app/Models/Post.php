@@ -22,6 +22,25 @@ class Post extends Model
 
     use HasFactory;
 
+/*     public function scopeFilter($query, array $filters){
+        
+        if($filters['search'] ?? false){
+            $query
+                ->where('title', 'like', '%' . request('search') . '%')
+                ->orWhere('body', 'like', '%' . request('search') . '%');
+        }
+
+    }//filter */
+    public function scopeFilter($query, array $filters){
+        $query->when($filters['search'] ?? false, fn($query, $search) =>
+        
+            $query
+                ->where('title', 'like', '%' . request('search') . '%')
+                ->orWhere('body', 'like', '%' . request('search') . '%')
+            );
+
+    }//filter
+
     public function category(){
         //hasOne, hasMany, belongsTo, belongsToMany
         return $this->belongsTo(Category::class);
