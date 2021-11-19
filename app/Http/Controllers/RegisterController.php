@@ -13,7 +13,7 @@ class RegisterController extends Controller
 
     public function store(){
 
-        $request = request()->validate([
+        $attributes = request()->validate([
             'name' => 'required|max:255',
             'username' => 'required|max:255|min:3',
             'email' => 'required|email|max:255',
@@ -22,12 +22,16 @@ class RegisterController extends Controller
         ]);
         
         /* User::create([
-            'name' => $request['name'],
-            'username' => $request['username'],
-            'email' => $request['email'],
-            'password' => $request['password']
+            'name' => $attributes['name'],
+            'username' => $attributes['username'],
+            'email' => $attributes['email'],
+            'password' => $attributes['password']
         ]); */
-        User::create($request);
+
+        /* se puede reemplazar por una funcion en el modelo user
+        $attributes['password'] = bcrypt($attributes['password']); */
+
+        User::create($attributes);
 
         return redirect('/');
     }//store
