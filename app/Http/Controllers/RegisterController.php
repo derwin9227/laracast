@@ -16,24 +16,12 @@ class RegisterController extends Controller
         $attributes = request()->validate([
             'name' => 'required|max:255',
             'username' => 'required|min:3|max:255|unique:users,username',
-            //-------------------------------------------table,column
             'email' => 'required|email|max:255|unique:users,email',
             'password' => 'required|min:7|max:255',
-            //'password' => ['required', 'min|7', 'max:255']
         ]);
-        
-        /* User::create([
-            'name' => $attributes['name'],
-            'username' => $attributes['username'],
-            'email' => $attributes['email'],
-            'password' => $attributes['password']
-        ]); */
-
-        /* se puede reemplazar por una funcion en el modelo user
-        $attributes['password'] = bcrypt($attributes['password']); */
 
         User::create($attributes);
 
-        return redirect('/');
+        return redirect('/')->with('success', 'Your account has been created.');
     }//store
 }
