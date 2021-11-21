@@ -11,22 +11,23 @@ class SessionsController extends Controller
     }//create
 
     public function store(){
+
         $attributes = request()->validate([
             'email' => 'required|email',
             'password' => 'required'
         ]);
 
-        if(auth()->attempt($attributes)){
-            session()->regenerate();
-            return redirect('/')->with('success', 'welcome Back');
+        if(! auth()->attempt($attributes)){
+
+            throw ValidationException::withMessages([
+                'email' => 'Your provided credentials coud not be verified.'
+            ]);
         }//if
 
-        throw ValidationException::withMessages([
-            'email' => 'Your provided credentials coud not be verified.'
-        ]);
-        /* return back()
-        ->withInput()
-        ->withErrors(['email' => 'Your provided credentials coud not be verified.']); */
+        session()->regenerate();
+
+        return redirect('/')->with('success', 'welcome Back');
+
     }//store
 
     public function destroy(){
