@@ -22,15 +22,6 @@ class Post extends Model
 
     use HasFactory;
 
-/*     public function scopeFilter($query, array $filters){
-        
-        if($filters['search'] ?? false){
-            $query
-                ->where('title', 'like', '%' . request('search') . '%')
-                ->orWhere('body', 'like', '%' . request('search') . '%');
-        }
-
-    }//filter */
     public function scopeFilter($query, array $filters){
 
         $query->when($filters['search'] ?? false, fn($query, $search) =>
@@ -55,6 +46,10 @@ class Post extends Model
             );
 
     }//filter
+
+    public function comments(){
+        return $this->hasMany(Comment::class);
+    }
 
     public function category(){
         //hasOne, hasMany, belongsTo, belongsToMany
