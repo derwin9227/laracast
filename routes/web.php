@@ -9,8 +9,24 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
 
 use App\Models\Post;
+use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\File;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
+
+Route::get('/ping', function () {
+    $mailchimp = new \MailchimpMarketing\ApiClient();
+
+    $mailchimp->setConfig([
+        'apiKey' => config('services.mailchimp.key'),
+        'server' => 'us20'
+    ]);
+
+    $response = $mailchimp->lists->addListMember("943edcfba1", [
+        "email_address" => "Lindsey.White93@hotmail.com",
+        "status" => "subscribed",
+    ]);
+    ddd($response);
+});
 
 Route::get('/', [PostController::class, 'index'])->name('home');
 
