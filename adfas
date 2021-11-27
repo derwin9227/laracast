@@ -1,0 +1,50 @@
+[33m62dfa7b[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m mailchimp API tinkering
+[33m8ca439c[m some light chapter clean up
+[33mbf944d8[m Activate the comment form
+[33m6a73db6[m Design the comment form
+[33m6be9ae3[m make the comments section dynamic
+[33mbb52360[m table consistency and foreign key
+[33m6d19efa[m write the markup for a post comment
+[33m65de3d3[m laravel breeze quick peek
+[33m6eec02c[m buld the log in page
+[33m062ca04[m login and logout
+[33m1f3cba3[m show a succes flash message
+[33m91041bf[m failed validation and old input data
+[33ma328bc8[m automatic password hashing with mutators
+[33m8ff2e92[m build a register user page and fix and error -email_verified_at- in models -> nullable
+[33m1e0bf35[m laughably simple pagination
+[33m30c71c3[m fix a confusing eloquent query bug
+[33mb16eb4e[m merge category and search queries
+[33m7862848[m author filtering
+[33mad051cd[m extract a category dropdown blade component
+[33m3e77c4d[m advanced eloquent query constraints
+[33m4f7b56f[m search (the cleaner way)
+[33m0a004af[m search (the messy way)
+[33m6a04a37[m quick tweaks and clean-up
+[33m87b140d[m how to extract a dropdown blade component
+[33m77f052e[m A small javascript dropdown detour
+[33mdfb153d[m convert the blog post page
+[33mbfa7964[m blade components and CSS grids
+[33m899c4d4[m Convert the HTML and CSS to blade
+[33ma009890[m eager load relationships on an existing model
+[33m5310934[m View all posts by an author
+[33mbbe86ef[m Turbo boost with factories
+[33m53cd47e[m database seeding saves time
+[33m694baa2[m clockwork, and the n+1 problem
+[33m8f99b5e[m show all posts associated with a category
+[33m3a2b42d[m First eloquent relationship
+[33mde00a83[m route model binding
+[33m022cd93[m ways to mitigate mass assignment vulnerabilities
+[33mefa7e26[m Eloquent updates and HTML escaping
+[33m0e855cc[m make a post model and migration
+[33mad584d7[m migrations: the absolute basics
+[33m5041c11[m few tweaks and consideration
+[33m0d595ad[m blade layouts two ways
+[33m9ed829f[m blade: the absolute basics
+[33mf6ac3eb[m collection sorting and caching refreser
+[33ma5d4f1c[m find a composer package for post metadata
+[33m5dd0f31[m use the filesystem class to read a directory
+[33mcb2e6e4[m usando cache
+[33m5df2113[m validando variables en las rutas, route wildcards
+[33m5c0a6c4[m Store blog posts as html files
+[33m5200437[m primer commit

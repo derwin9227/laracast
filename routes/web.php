@@ -11,9 +11,14 @@ use App\Http\Controllers\RegisterController;
 use App\Models\Post;
 use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\File;
+use PhpParser\Node\Stmt\TryCatch;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
 
-Route::get('/ping', function () {
+Route::post('/newsletter', function () {
+    request()->validate([
+        'email' => 'required|email',
+    ]);
+
     $mailchimp = new \MailchimpMarketing\ApiClient();
 
     $mailchimp->setConfig([
@@ -21,11 +26,20 @@ Route::get('/ping', function () {
         'server' => 'us20'
     ]);
 
-    $response = $mailchimp->lists->addListMember("943edcfba1", [
-        "email_address" => "Lindsey.White93@hotmail.com",
-        "status" => "subscribed",
-    ]);
-    ddd($response);
+    try{
+        $response = $mailchimp->lists->addListMember("943edcfba1", [
+            "email_address" => request('email'),
+            "status" => "subscribed",
+        ]);
+    }
+    catch(\Exception $e){
+        throw \Illuminate\Validation\ValidationException::withMessages([
+            'email' => 'This email could not be added to or newsletter list.'
+        ]);
+    }
+   
+    return redirect('/')
+            ->with('success', 'You are now signed up for our newsletter!');
 });
 
 Route::get('/', [PostController::class, 'index'])->name('home');
