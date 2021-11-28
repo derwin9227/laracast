@@ -1,46 +1,21 @@
 <?php
 
+use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\PostCommentController;
-use App\Models\Category;
-use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
 
 use App\Models\Post;
+use App\Services\Newsletter;
 use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\File;
+use Illuminate\Validation\ValidationException;
 use PhpParser\Node\Stmt\TryCatch;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
 
-Route::post('/newsletter', function () {
-    request()->validate([
-        'email' => 'required|email',
-    ]);
-
-    $mailchimp = new \MailchimpMarketing\ApiClient();
-
-    $mailchimp->setConfig([
-        'apiKey' => config('services.mailchimp.key'),
-        'server' => 'us20'
-    ]);
-
-    try{
-        $response = $mailchimp->lists->addListMember("943edcfba1", [
-            "email_address" => request('email'),
-            "status" => "subscribed",
-        ]);
-    }
-    catch(\Exception $e){
-        throw \Illuminate\Validation\ValidationException::withMessages([
-            'email' => 'This email could not be added to or newsletter list.'
-        ]);
-    }
-   
-    return redirect('/')
-            ->with('success', 'You are now signed up for our newsletter!');
-});
+Route::post('newsletter', NewsletterController::class);
 
 Route::get('/', [PostController::class, 'index'])->name('home');
 
