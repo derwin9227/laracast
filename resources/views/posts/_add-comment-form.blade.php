@@ -9,21 +9,14 @@
 
         </header>
 
-        <div class="mt-6">
-            <textarea
-                name="body"
-                class="w-full text-sm focus:outline-none focus:ring"
-                rows="5"
-                placeholder="Quick, thing of something to say!"
-                required></textarea>
+        <x-form.field>
+            <x-form.textarea name="body" />
 
-                @error('body')
-                    <span class="text-xs text-red-500">{{ $message }}</span>
-                @enderror
-        </div>
+                <x-form.error name="body" />
+        </x-form.field>
 
         <div class="flex justify-end mt-6 pt-6 border-t border-gray-200 pt-6">
-            <x-submit-button>Post</x-submit-button>
+            <x-form.button>Submit</x-form.button>
         </div>
 
     </form>
