@@ -7,11 +7,12 @@ use App\Models\Post;
 use App\Models\Category;
 use Illuminate\Validation\Rule;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
     public function index(){
-    
+
         return view('posts.index',[
             'posts' => Post::latest()
             ->filter(request(['search', 'category', 'author']))
@@ -34,14 +35,18 @@ class PostController extends Controller
         
         $attributes = request()->validate([
             'title' => 'required',
+            'thumbnail' => 'required|image',
             'slug' => ['required', Rule::unique('posts', 'slug')],
             'excerpt' => 'required',
             'body' => 'required',
-            //'category_id' => 'required|unique:categories,id',
             'category_id' => ['required' , Rule::exists('categories', 'id')]
         ]);
 
         $attributes['user_id'] = auth()->id();
+
+        $attributes['thumbnail'] = request()->file('thumbnail')->store('public/thumbnails');
+
+        $attributes['thumbnail'] = Str::after($attributes['thumbnail'], 'public/');
 
         Post::create($attributes);
 
